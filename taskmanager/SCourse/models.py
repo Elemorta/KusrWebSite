@@ -19,16 +19,23 @@ class Street(models.Model):
 
 class Bundle(models.Model):
     Name_Bundle = models.CharField(max_length=255)
-    Discription = models.TextField()
+    Count_channels= models.IntegerField(default=None)
+    Count_films= models.IntegerField(default=None)
     Price = models.IntegerField()
     Date_begin = models.DateField()
     Date_end = models.DateField()
+
+    def __str__(self):
+        return self.Name_Bundle
 
 
 class Operator(models.Model):
     Name_Operator = models.CharField(max_length=255)
     Login = models.CharField(max_length=30)
     Password = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.Name_Operator
 
 
 class Application(models.Model):

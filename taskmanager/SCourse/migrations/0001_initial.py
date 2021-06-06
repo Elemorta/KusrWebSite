@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('Name_Street', models.CharField(max_length=255)),
                 ('Number_Street', models.IntegerField()),
-                ('Town', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ServerKursovoy.town')),
+                ('Town', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='SCourse.town')),
             ],
         ),
         migrations.CreateModel(
@@ -59,10 +59,10 @@ class Migration(migrations.Migration):
                 ('Floor', models.IntegerField()),
                 ('Flat', models.IntegerField()),
                 ('Status', models.BooleanField()),
-                ('Bundle', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ServerKursovoy.bundle')),
-                ('Operator', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ServerKursovoy.operator')),
-                ('Street', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ServerKursovoy.street')),
-                ('Town', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='ServerKursovoy.town')),
+                ('Bundle', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='SCourse.bundle')),
+                ('Operator', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='SCourse.operator')),
+                ('Street', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='SCourse.street')),
+                ('Town', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='SCourse.town')),
             ],
         ),
     ]

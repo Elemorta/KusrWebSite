@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<ul class="list-bundles">
+    {% for m in bundles %}
+    <li><h2>{{m}}</h2>
+        <p>Интерактивное TV {{m.Count_channels}} канала</p>
+        <p>Онлайн-кинотеатр {{m.Count_films}} фильма</p>
+        <p>Цена {{m.Price}} руб./мес.</p>
+        <p class="link-read-post"><a href="#">Подключить</a></p>
+        </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}
