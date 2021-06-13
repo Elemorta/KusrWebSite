@@ -1,9 +1,12 @@
 {% extends 'main/base.html' %}
-
+<script src="jquery.js"></script>
+<script src="jquery.maskedinput.min.js"></script>
 {% block content %}
-<ul>
-    {% for m in Citys %}
-    <li>{{m}}</li>
-    {% endfor %}
-</ul>
+
+<form action="{% url 'application' %}" method="post">
+    {% csrf_token %}
+    <div class="form-error">{{ form.non_field_errors }} </div>
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>>
 {% endblock %}

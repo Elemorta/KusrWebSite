@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name = 'home'),
-    path('operator', views.OperatorAuth),
-    path('bundles', views.Bundles)
+    path('auth/', views.Authorization, name='auth'),
+    path('bundles/', views.Bundles, name='bundles'),
+    path('application/', views.application, name='application'),
+    path('aplicationbundles/<slug:bundles_name>/', views.applicationBund, name='appbund')
 ]
