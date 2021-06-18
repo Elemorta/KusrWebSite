@@ -1,25 +1,50 @@
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from .forms import AuthForm, Application as App
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+
+from .forms import Application as App
 from .models import *
 
-base = [{'title': 'Авторизация', 'url_name': 'auth'},
-        {'title': 'Подключить пакет цифрового телевидения', 'url_name': 'application'},
-        {'title': 'Тарифы', 'url_name': 'bundles'}]
+base = [{'title': 'Подключить пакет цифрового телевидения', 'url_name': 'application'},
+        {'title': 'Тарифы', 'url_name': 'bundles'},
+        {'title': 'Авторизация', 'url_name': 'auth'}]
 
 
-def index(request):
-    Citys = Town.objects.all()
-    return render(request, 'main/about.html', {'Citys': Citys, 'base': base, 'title': 'Главная страница'})
+class Mainpage(ListView):
+    queryset = {'base': base}
+    template_name = 'main/about.html'
+    extra_context = {'title': 'О нас'}
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base'] = base
+        return context
 
 
-def Authorization(request):
-    if request.method == 'POST':
-        form = AuthForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-    else:
-        form = AuthForm()
-    return render(request, 'main/OperatorInput.html', {'base': base, 'form': form, 'title': 'Авторизация'})
+class Authorization(LoginView):
+    queryset = {'base': base}
+    template_name = 'main/SignIn.html'
+    form_class = AuthenticationForm
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base'] = base
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('operatormenu')
+
+
+class OperatorMenu(ListView):
+    queryset = {'base': base}
+    template_name = 'main/OperatorMenu.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['base'] = base
+        return context
 
 
 def Bundles(request):
@@ -56,3 +81,6 @@ def applicationBund(request, bundles_name):
         form = App()
     bundle = bundles_name
     return render(request, 'main/Application.html', {'bundle': bundle, 'base': base, 'form': form, 'title': 'Подключение тарифа'})
+
+def page404(request):
+    return render(request, 'main/404.html', {'base': base})

@@ -1,16 +1,26 @@
 {% extends 'main/base.html' %}
-{% load static %}
 
 {% block content %}
-<ul class="list-bundles">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <p class="fs-5 text-muted"> Тарифы на пакетные предложения.</p>
+    </div>
+<div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
     {% for m in bundles %}
-    <li><h2>{{m}}</h2>
-        <p>Интерактивное TV {{m.Count_channels}} канала</p>
-        <p>Онлайн-кинотеатр {{m.Count_films}} фильма</p>
-        <p>Цена {{m.Price}} руб./мес.</p>
-        <p class="link-read-post"><a href="{{ m.get_absolute_url }}">Подключить</a></p>
-        </li>
-    {% endfor %}
-
-</ul>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{m}}</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{m.Price}} руб.<small class="text-muted fw-light">/мес.</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Интерактивное TV {{m.Count_channels}} канала</li>
+              <li>Онлайн-кинотеатр {{m.Count_films}} фильма</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary"><a href="{{ m.get_absolute_url }}">Подключить</a></button>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+</div>
 {% endblock %}

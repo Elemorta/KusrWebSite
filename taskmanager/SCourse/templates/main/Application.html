@@ -1,8 +1,7 @@
 {% extends 'main/base.html' %}
-<script src="jquery.js"></script>
-<script src="jquery.maskedinput.min.js"></script>
-{% block content %}
 
+{% block content %}
+<h2>Заявка</h2>
 <form action="{% url 'application' %}" method="post">
     {% csrf_token %}
     <div class="form-error">{{ form.non_field_errors }} </div>

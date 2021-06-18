@@ -1,33 +1,123 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html>
-<head>
-	<title>{{title}}</title>
-	<link type="text/css" href="{% static 'SCourse/css/styles.css' %}" rel="stylesheet" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="shortcut icon" href="{% static 'SCourse/images/main.ico' %}" type="image/x-icon"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<table class="table-page" border=0 cellpadding="0" cellspacing="0">
-<tr><td valign=top>
-{% block mainmenu %}
-        <div class="header">
-            <ul id="mainmenu" class="mainmenu">
-            <li class="logo"><a href="{% url 'home'%}"><div class="logo"></div></a></li>
-{% for m in base %}
-    {% if not forloop.last %}
-            <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
-    {% else %}
-            <li class="last"><a href="{% url m.url_name %}">{{m.title}}</a></li>
-    {% endif %}
-{% endfor %}
-            </ul>
-            <div class="clear"></div>
-        </div>
-{% endblock mainmenu %}
-{% block content %}
-{% endblock content %}
-</td></tr></table>
-</body>
+	<head>
+		<title>{{title}}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Fonts-->
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/css/bootstrap.css' %}" >
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/fonts/fontawesome/font-awesome.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/fonts/themify-icons/themify-icons.css' %}">
+		<!-- Vendors-->
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/vendors/bootstrap4/bootstrap-grid.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/vendors/magnific-popup/magnific-popup.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/vendors/owl.carousel/owl.carousel.css' %}">
+		<!-- App & fonts-->
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
+		<link rel="stylesheet" type="text/css" href="{% static 'SCourse/css/main.css' %}">
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+
+	</head>
+	<body>
+		<div class="page-wrap">
+			{% block mainmenu %}
+			<!-- header -->
+			<header class="header">
+				<div class="container">
+					<div class="header__logo"><a href="{% url 'home' %}"><img src="{% static 'SCourse/img/logo.png' %}" alt=""/></a></div>
+					<!-- consult-nav -->
+					<nav class="consult-nav">
+						<!-- consult-menu -->
+						<ul class="consult-menu">
+							{% for m in base %}
+								{% if not forloop.last %}
+									<li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+								{% else %}
+									<li class="last"><a href="{% url m.url_name %}">{{m.title}}</a></li>
+								{% endif %}
+							{% endfor %}
+						</ul><!-- consult-menu -->
+
+						<div class="navbar-toggle"><span></span><span></span><span></span></div>
+					</nav><!-- End / consult-nav -->
+				</div>
+			</header><!-- End / header -->
+
+			{% endblock mainmenu %}
+			<div class="page-wrap">
+				{% block content %}
+				{% endblock content %}
+			</div>
+			<!-- footer -->
+		<footer class="footer">
+		<div class="footer__main">
+			<div class="row row-eq-height">
+				<div class="col-8 col-sm-7 col-md-9 col-lg-3 ">
+					<div class="footer__item"><a class="consult_logo" href="#"><img src="{% static 'SCourse/img/logo.png' %}" alt=""/></a>
+						<p>Информация — наиболее ценный из известных мне товаров.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+					<div class="footer__item">
+
+							<!-- widget-text__widget -->
+							<section class="widget-text__widget widget">
+								<div class="widget-text__content">
+									<ul>
+										<li><a href="{% url 'page404' %}">Обратная связь </a></li>
+										<li><a href="{% url 'page404' %}">О компании </a></li>
+										<li><a href="{% url 'page404' %}">Работа в компании</a></li>
+										<li><a href="{% url 'page404' %}">Офисы продаж</a></li>
+									</ul>
+									</div>
+								</section><!-- End / widget-text__widget -->
+
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2 col-xl-2 ">
+						<div class="footer__item">
+
+								<!-- widget-text__widget -->
+								<section class="widget-text__widget widget">
+									<div class="widget-text__content">
+										<ul>
+											<li><a href="{% url 'bundles' %}">Пакеты </a></li>
+											<li><a href="{% url 'page404' %}">Интернет в чатный дом </a></li>
+											<li><a href="{% url 'page404' %}">Видеонаблюдение </a></li>
+											<li><a href="{% url 'page404' %}">Архиф тарифов</a></li>
+										</ul>
+									</div>
+								</section><!-- End / widget-text__widget -->
+
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4 col-lg-2 col-xl-2  consult_backToTop">
+						<div class="footer__item"><a href="#" id="back-to-top"> <i class="fa fa-angle-up" aria-hidden="true"> </i><span>Back To Top</span></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="footer__copyright">2021 &copy; . Все права у меня и ни у кого больше.</div>
+		</footer><!-- End / footer -->
+		</div>
+		<!-- Vendors-->
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/isotope-layout/isotope.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.countdown/jquery.countdown.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.countTo/jquery.countTo.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.countUp/jquery.countup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.matchHeight/jquery.matchHeight.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.mb.ytplayer/jquery.mb.YTPlayer.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/masonry-layout/masonry.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/owl.carousel/owl.carousel.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/jquery.waypoints/jquery.waypoints.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/menu/menu.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'SCourse/vendors/smoothscroll/SmoothScroll.min.js' %}"></script>
+		<!-- App-->
+		<script type="text/javascript" src="{% static 'SCourse/js/main.js' %}"></script>
+	</body>
 </html>

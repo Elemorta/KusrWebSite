@@ -56,3 +56,4 @@ class Application(models.Model):
     Town = models.ForeignKey(Town, null=True, on_delete=models.SET_NULL)
     Operator = models.ForeignKey(Operator, null=True, on_delete=models.SET_NULL)
     Date_application = models.DateField(null=True, default=datetime.date.today())
+
